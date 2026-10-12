@@ -1,0 +1,24 @@
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+  height: 36px;
+  width: 100%;
+  max-width: 320px;
+  padding-inline: var(--mantine-spacing-sm);
+  border-radius: var(--mantine-radius-md);
+  border: 1px solid var(--mantine-color-default-border);
+  background-color: var(--mantine-color-default);
+  color: var(--mantine-color-dimmed);
+  font-size: var(--mantine-font-size-sm);
+  transition: border-color 120ms ease;
+
+  @mixin hover {
+    border-color: var(--mantine-primary-color-filled);
+  }
+}
+
+.label {
+  flex: 1;
+  text-align: left;
+}

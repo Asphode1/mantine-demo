@@ -1,0 +1,27 @@
+.row {
+  position: relative;
+  display: flex;
+  gap: var(--mantine-spacing-sm);
+  width: 100%;
+  padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--mantine-color-default-border);
+
+  @mixin hover {
+    background-color: var(--mantine-color-default-hover);
+  }
+
+  &[data-unread] {
+    background-color: var(--mantine-primary-color-light);
+  }
+}
+
+.dismiss {
+  opacity: 0;
+  transition: opacity 100ms ease;
+
+  .row:hover &,
+  .row:focus-within & {
+    opacity: 1;
+  }
+}
