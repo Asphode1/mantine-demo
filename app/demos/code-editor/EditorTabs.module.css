@@ -1,0 +1,52 @@
+.strip {
+  background: var(--mantine-color-default-hover);
+  border-bottom: 1px solid var(--mantine-color-default-border);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  height: 36px;
+  padding: 0 6px 0 12px;
+  border-right: 1px solid var(--mantine-color-default-border);
+  border-top: 2px solid transparent;
+  color: var(--mantine-color-dimmed);
+
+  &[data-active] {
+    background: var(--mantine-color-body);
+    border-top-color: var(--mantine-primary-color-filled);
+    color: var(--mantine-color-text);
+  }
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--mantine-font-size-sm);
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* A dirty tab shows ● in place of × until hovered, as in VS Code. */
+.dirty {
+  display: none;
+}
+
+.tab[data-dirty]:not(:hover, :focus-within) {
+  .dirty {
+    display: flex;
+  }
+
+  .close {
+    display: none;
+  }
+}
+
+.close {
+  .tab:not([data-active]):not(:hover, :focus-within) & {
+    visibility: hidden;
+  }
+}

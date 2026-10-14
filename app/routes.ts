@@ -17,6 +17,7 @@ export default [
     route("booking", "routes/booking.tsx"),
     route("chat", "routes/chat.tsx"),
     route("analytics", "routes/analytics.tsx"),
+    route("code-editor", "routes/code-editor.tsx"),
   ]),
   // The admin shell owns the whole viewport, so it sits outside the gallery layout.
   route("admin-shell/*", "routes/admin-shell.tsx"),

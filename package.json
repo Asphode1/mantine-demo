@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mantine/charts": "^9.7.2",
+    "@mantine/code-highlight": "^9.7.2",
     "@mantine/core": "^9.7.2",
     "@mantine/dates": "^9.7.2",
     "@mantine/dropzone": "^9.7.2",
@@ -19,11 +20,12 @@
     "@mantine/spotlight": "^9.7.2",
     "@tabler/icons-react": "^3.49.0",
     "dayjs": "^1.11.23",
+    "isbot": "^5",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-router": "^8.4.0",
     "recharts": "^3.10.1",
-    "isbot": "^5"
+    "shiki": "^4.5.0"
   },
   "devDependencies": {
     "@react-router/dev": "^8.4.0",

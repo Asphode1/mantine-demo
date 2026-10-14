@@ -9,7 +9,7 @@ The goal is to showcase Mantine's breadth: core components, hooks, forms, and of
 ## Ground rules
 
 - **Mantine only.** Use components and hooks from official `@mantine/*` packages. Do not add third-party UI, state, or form libraries.
-- **Allowed exceptions:** `@tabler/icons-react` for icons (used throughout Mantine's own docs), peer dependencies required by official Mantine packages (`dayjs` for `@mantine/dates`, `recharts` for `@mantine/charts`), and React Router (framework mode) for the app shell and routing between demos.
+- **Allowed exceptions:** `@tabler/icons-react` for icons (used throughout Mantine's own docs), peer dependencies required by official Mantine packages (`dayjs` for `@mantine/dates`, `recharts` for `@mantine/charts`, `shiki` as the highlighter adapter for `@mantine/code-highlight`), and React Router (framework mode) for the app shell and routing between demos.
 - **Mock data** is generated with small hand-written functions, not faker or similar libraries.
 - **Verify APIs against the installed Mantine version.** Some APIs differ between v7 and v8 (e.g. `TimeGrid` exists only in v8). Check the docs at https://mantine.dev when unsure.
 - Keep data (registries, mock records, types) separate from UI components.
@@ -20,11 +20,11 @@ The goal is to showcase Mantine's breadth: core components, hooks, forms, and of
 Packages used across the demos:
 
 - Core set: `@mantine/core`, `@mantine/hooks`, `@mantine/form`, `@mantine/notifications`
-- Extensions (per demo): `@mantine/spotlight`, `@mantine/dropzone`, `@mantine/dates` (+ `dayjs`), `@mantine/charts` (+ `recharts`)
+- Extensions (per demo): `@mantine/spotlight`, `@mantine/dropzone`, `@mantine/dates` (+ `dayjs`), `@mantine/charts` (+ `recharts`), `@mantine/code-highlight` (+ `shiki`)
 
 Required in the app root:
 
-- Import `@mantine/core/styles.css`, plus the stylesheet of every extension package used (e.g. `@mantine/spotlight/styles.css`, `@mantine/notifications/styles.css`, `@mantine/dates/styles.css`, `@mantine/dropzone/styles.css`, `@mantine/charts/styles.css`).
+- Import `@mantine/core/styles.css`, plus the stylesheet of every extension package used (e.g. `@mantine/spotlight/styles.css`, `@mantine/notifications/styles.css`, `@mantine/dates/styles.css`, `@mantine/dropzone/styles.css`, `@mantine/charts/styles.css`, `@mantine/code-highlight/styles.css`).
 - Wrap the app in `MantineProvider`.
 - Mount `<Notifications />` inside `MantineProvider`.
 
@@ -55,6 +55,7 @@ Mantine 9 API differences hit so far: `Collapse` uses `expanded` (not `in`), `Gr
 | 8 | Appointment booking widget | Implemented from outline |
 | 9 | Chat interface | Implemented from outline |
 | 10 | Analytics dashboard | Implemented from outline |
+| 11 | Code editor (VS Code style) | Implemented |
 
 ---
 
@@ -208,3 +209,6 @@ Bell `ActionIcon` wrapped in `Indicator` (unread count), opening a `Popover` wit
 
 ### #10 Analytics dashboard
 `SimpleGrid` of stat `Card`s with `RingProgress` and trend `Badge`s; `SegmentedControl` for time range. `@mantine/charts`: `AreaChart`, `BarChart`, `DonutChart` (requires `recharts`).
+
+### #11 Code editor (VS Code style)
+Editable overlay: a transparent `textarea` (caret + selection) under a `<pre>` filled by `useHighlight()` from `@mantine/code-highlight`, inside `CodeHighlightAdapterProvider` with `createShikiAdapter`. Shiki is the fine-grained `shiki/core` bundle (JS regex engine, only the grammars/themes used), loaded lazily. Sticky line-number gutter with active line, explorer tree (`NavLink`), tabs with dirty markers, `Breadcrumbs`, VS Code-style status bar (Ln/Col, line count, language mode `Menu`). Tab/Shift+Tab indent, Enter auto-indent, ⌘/ line comments (pure logic in `editing.ts`, applied via `execCommand("insertText")` to keep native undo), ⌘S save via `useHotkeys`; saved files and theme persisted with `useLocalStorage`. Saved version shown read-only with `CodeHighlight`.

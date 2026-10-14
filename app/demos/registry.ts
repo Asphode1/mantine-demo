@@ -83,6 +83,14 @@ export const demos: DemoMeta[] = [
     description: "Stat cards, time-range switcher and area, bar and donut charts.",
     packages: ["core", "hooks", "charts", "notifications"],
   },
+  {
+    slug: "code-editor",
+    number: 11,
+    title: "Code editor",
+    description:
+      "VS Code-style editor with shiki syntax highlighting, line-number gutter, tabs and status bar.",
+    packages: ["core", "hooks", "code-highlight", "notifications"],
+  },
 ];
 
 export function getDemo(slug: string): DemoMeta {

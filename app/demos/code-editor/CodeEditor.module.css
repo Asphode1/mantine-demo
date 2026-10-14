@@ -1,0 +1,102 @@
+.scroller {
+  position: relative;
+  overflow: auto;
+  background: var(--editor-bg);
+  color: var(--editor-fg);
+  color-scheme: var(--editor-scheme);
+}
+
+.content {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Textarea and highlighted <pre> must share every metric, or the caret drifts from the text. */
+.gutter,
+.input,
+.highlight {
+  font-family: var(--mantine-font-family-monospace);
+  font-size: var(--editor-font-size);
+  line-height: var(--editor-line-height);
+  font-variant-ligatures: none;
+  letter-spacing: 0;
+  tab-size: 2;
+}
+
+.gutter {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  flex: none;
+  padding: var(--editor-padding) 20px var(--editor-padding) 16px;
+  background: var(--editor-bg);
+  color: var(--editor-line-number);
+  text-align: right;
+  user-select: none;
+  cursor: pointer;
+}
+
+.lineNumber {
+  height: var(--editor-line-height);
+
+  &[data-active] {
+    color: var(--editor-active-line-number);
+  }
+}
+
+.code {
+  position: relative;
+  flex: 1;
+}
+
+.activeLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--editor-line-height);
+  background: var(--editor-line-highlight);
+  pointer-events: none;
+}
+
+.input,
+.highlight {
+  margin: 0;
+  border: 0;
+  padding: var(--editor-padding) 48px var(--editor-padding) 4px;
+  white-space: pre;
+  overflow-wrap: normal;
+}
+
+/* Sits under the <pre>: it paints the caret and selection, the <pre> paints the tokens. */
+.input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  resize: none;
+  overflow: hidden;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--editor-cursor);
+
+  &::selection {
+    background: var(--editor-selection);
+  }
+}
+
+.highlight {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  color: var(--editor-fg);
+  pointer-events: none;
+
+  & code {
+    font: inherit;
+    background: none;
+    padding: 0;
+  }
+}
